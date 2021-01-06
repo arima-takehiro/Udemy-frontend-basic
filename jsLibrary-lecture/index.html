@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+
+    <title>My Photos</title>
+</head>
+<body>
+    <header>
+        <h1>My Photos</h1>
+    </header>
+
+    <div class="container">
+        <div id="img_unit">
+        </div>
+    </div>
+    <script src="jquery/jquery.min.js"></script>
+    <script>
+        $.getJSON('https://h2o-space.com/htmlbook/images.php', function(data){
+            for (var i=0; i<data.length; i++) {
+                $('<div class="photo"></div>')
+                        .append('<img src="' + data[i].path + '">')
+                        .append('<div class="inner"><p>' + data[i].caption + '<span>'
+                                + data[i].name + '</span></p></div>')
+                        .appendTo('#img_unit');
+                /*
+                <div id="img_unit">
+                    <div class="photo">
+                    <img src="img/img01.png>
+                    <div class="inner"><p>コメント<span>name01</span></p></div>
+                </div>
+                */
+            }
+        });
+    </script>
+</body>
+</html>
